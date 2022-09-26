@@ -1,0 +1,100 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My User Project CRUD",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/user/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create User",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/create-user": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "user_email": "user",
+            "in": "body",
+            "description": "User email",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            "user_password": "user",
+            "in": "body",
+            "description": "User Password",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            "user_type": "user",
+            "in": "body",
+            "description": "User type",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/newUser"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "required": ["user_email", "user_password", "user_type"],
+        "properties": {
+          "user_email": {
+            "type": "string"
+          },
+          "user_password": {
+            "type": "string"
+          },
+          "user_type": {
+            "type": "string"
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+      }
+    }
+  }
+}
