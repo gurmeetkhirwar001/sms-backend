@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 
 const attendenceSchema = new mongoose.Schema(
   {
-    student: {
+    student_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "student",
+      ref: "User",
+      required: true,
     },
     is_present: {
       type: Boolean,

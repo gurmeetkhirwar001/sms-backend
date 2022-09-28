@@ -5,7 +5,8 @@ const { JWT_SECRET, JWT_EXPIRE_TIME } = process.env;
 const createNewToken = (user) => {
   try {
     const payload = user;
-    const token = JWT.sign(payload, JWT_SECRET, {
+    console.log(typeof payload, "userrr");
+    const token = JWT.sign({ ...payload }, JWT_SECRET, {
       expiresIn: JWT_EXPIRE_TIME,
     });
     return token;

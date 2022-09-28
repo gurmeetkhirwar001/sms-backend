@@ -1,5 +1,11 @@
 const express = require("express");
-const { registerAttendance, getAllAttendance, getSingleAttendance, updateAttendance, deleteAttendance } = require("../controllers/attendanceController");
+const {
+  registerAttendance,
+  getAllAttendance,
+  getSingleAttendance,
+  updateAttendance,
+  deleteAttendance,
+} = require("../controllers/attendanceController");
 
 const router = express.Router();
 

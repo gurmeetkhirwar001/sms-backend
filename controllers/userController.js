@@ -1,19 +1,21 @@
-const UserModel = require("../models/userModel");
+const User = require("../models/userModel");
 const { UserRegistration } = require("../validator/userValidator");
 const responseHandler = require("../helpers/responseHandler");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const { createNewToken } = require("../helpers/jwt");
+
 
 const UserCreation = async (req, res, next) => {
   try {
     const { user_email, user_password, user_type } =
       await UserRegistration().validate(req.body);
 
-    const User = await UserModel.findOne({ user_email });
-    if (User) {
+    const UserData = await User.findOne({ email: user_email });
+    console.log(UserData);
+    if (UserData) {
       throw new Error("User with this email already Exist.");
     } else {
-      const UserSave = new UserModel(req.body);
+      const UserSave = new User(req.body);
 
       const user = await UserSave.save();
 
@@ -24,17 +26,31 @@ const UserCreation = async (req, res, next) => {
   }
 };
 
+const getAllUsers = async (req, res, next) => {
+  try {
+    const user = await User.find();
+    if (user) {
+      responseHandler.data(res, user, 200);
+    } else {
+      res.status(404).send({ message: "User not found..!" });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const UserLogin = async (req, res, next) => {
   try {
-    const User = await UserModel.findOne({ user_email });
+    const UserData = await User.findOne({ email: req.body.user_email });
 
-    if (User) {
-      const PasswordMatch = await bcrypt.compare(
-        user_password,
-        User.user_password
+    if (UserData) {
+      const PasswordMatch = await bcryptjs.compare(
+        req.body.user_password,
+        UserData.password
       );
       if (PasswordMatch) {
-        const token = createNewToken(User);
+        const token = createNewToken(UserData);
+        console.log(token, "token");
         responseHandler.data(res, token, 200);
       } else {
         throw new Error("Password Doesn't match");
@@ -49,7 +65,7 @@ const UserLogin = async (req, res, next) => {
 
 const UserUpdate = async (req, res, next) => {
   try {
-    const UpdateUser = await UserModel.updateOne(
+    const UpdateUser = await User.updateOne(
       { _id: req.body.id },
       { ...req.body }
     );
@@ -61,7 +77,7 @@ const UserUpdate = async (req, res, next) => {
 
 const UserDelete = async (req, res, next) => {
   try {
-    await UserModel.deleteOne({ _id: req.params.id });
+    await User.deleteOne({ _id: req.params.id });
     responseHandler.success(res, "User Deleted Successfully", 200);
   } catch (e) {
     next(e);
@@ -70,6 +86,7 @@ const UserDelete = async (req, res, next) => {
 
 module.exports = {
   UserCreation,
+  getAllUsers,
   UserLogin,
   UserUpdate,
   UserDelete,

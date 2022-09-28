@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const teacherSchema = new mongoose.Schema(
   {
+    teacher_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     faculty_name: {
       type: String,
       required: true,
@@ -16,10 +21,6 @@ const teacherSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    // password: {
-    //   type: String,
-    //   required: true,
-    // },
     father_name: {
       type: String,
       required: true,
