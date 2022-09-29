@@ -14,7 +14,10 @@ const registerAttendance = async (req, res, next) => {
 // API to get all the Attendance
 const getAllAttendance = async (req, res, next) => {
   try {
-    const attendance = await Attendance.find();
+    const attendance = await Attendance.find().populate(
+      "student_id",
+      "student_name student_course"
+    );
     if (attendance) {
       return res.status(200).send(attendance);
     } else {
@@ -31,6 +34,7 @@ const getAllAttendance = async (req, res, next) => {
 const getSingleAttendance = async (req, res, next) => {
   try {
     const attendance = await Attendance.findOne({ _id: req.params.id });
+    // .populate("student_id");
     if (attendance) {
       return res.status(200).send(attendance);
     } else {

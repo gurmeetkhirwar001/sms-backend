@@ -11,7 +11,7 @@ const UserCreation = async (req, res, next) => {
       await UserRegistration().validate(req.body);
 
     const UserData = await User.findOne({ email: user_email });
-    console.log(UserData);
+    // console.log(UserData);
     if (UserData) {
       throw new Error("User with this email already Exist.");
     } else {
@@ -39,6 +39,22 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+// API to get single student
+
+const getSingleUser = async (req, res, next) => {
+  try {
+    const singleUser = await User.findOne({ _id: req.params.id });
+    if (singleUser) {
+      return res.status(200).send(singleUser);
+    } else {
+      res.status(404).send({ message: "User not found..." });
+    }
+  } catch (error) {
+    next("message", error.message);
+  }
+};
+
+
 const UserLogin = async (req, res, next) => {
   try {
     const UserData = await User.findOne({ email: req.body.user_email });
@@ -50,7 +66,7 @@ const UserLogin = async (req, res, next) => {
       );
       if (PasswordMatch) {
         const token = createNewToken(UserData);
-        console.log(token, "token");
+        // console.log(token, "token");
         responseHandler.data(res, token, 200);
       } else {
         throw new Error("Password Doesn't match");
@@ -62,7 +78,7 @@ const UserLogin = async (req, res, next) => {
     next(e);
   }
 };
-
+ 
 const UserUpdate = async (req, res, next) => {
   try {
     const UpdateUser = await User.updateOne(
@@ -87,6 +103,7 @@ const UserDelete = async (req, res, next) => {
 module.exports = {
   UserCreation,
   getAllUsers,
+  getSingleUser,
   UserLogin,
   UserUpdate,
   UserDelete,

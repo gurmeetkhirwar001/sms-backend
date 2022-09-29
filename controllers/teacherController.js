@@ -8,7 +8,7 @@ const registerTeacher = async(req,res, next) => {
         const teacher = await Teacher.create(req.body);
         res.send(teacher)
     } catch (error) {
-        console.log('error:', error.message) 
+        next(error) 
     }
 }
 

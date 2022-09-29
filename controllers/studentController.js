@@ -6,21 +6,21 @@ const router = require("../routes/studentRoute");
 
 const registerStudent = asyncHandler(async (req, res, next) => {
   try {
-    const {
-      student_name,
-      student_id,
-      student_course,
-      student_semester,
-      student_class,
-      student_contact_number,
-      student_email,
-      student_home_address,
-      student_city,
-      father_name,
-      father_email,
-      father_contact_number,
-      father_city,
-    } = req.body;
+    // const {
+    //   student_name,
+    //   student_id,
+    //   student_course,
+    //   student_semester,
+    //   student_class,
+    //   student_contact_number,
+    //   student_email,
+    //   student_home_address,
+    //   student_city,
+    //   father_name,
+    //   father_email,
+    //   father_contact_number,
+    //   father_city,
+    // } = req.body;
 
     // const studentExists = await Student.findOne({ student_email });
 
@@ -28,42 +28,45 @@ const registerStudent = asyncHandler(async (req, res, next) => {
     //   res.status.send(400).send({ message: "student already exists with this email, Please try another one..!" });
     // }
 
-    const student = await Student.create({
-      student_name,
-      student_id,
-      student_course,
-      student_semester,
-      student_class,
-      student_contact_number,
-      student_email,
-      student_home_address,
-      student_city,
-      father_name,
-      father_email,
-      father_contact_number,
-      father_city,
-    });
+    const student = await Student.create(req.body );
+    res.send(student)
+    //   {
+    //   student_name,
+    //   student_id,
+    //   student_course,
+    //   student_semester,
+    //   student_class,
+    //   student_contact_number,
+    //   student_email,
+    //   student_home_address,
+    //   student_city,
+    //   father_name,
+    //   father_email,
+    //   father_contact_number,
+    //   father_city,
+    // }
+    // );
 
-    if (student) {
-      res.status(201).json({
-        _id: student._id,
-        student_name: student_name,
-        student_id: student_id,
-        student_course: student_course,
-        student_semester: student_semester,
-        student_class: student_class,
-        student_contact_number: student_contact_number,
-        student_email: student_email,
-        student_home_address: student_home_address,
-        student_city: student_city,
-        father_name: father_name,
-        father_email: father_email,
-        father_contact_number: father_contact_number,
-        father_city: father_city,
-      });
-    } else {
-      res.status(401).send({ message: "Error occurd in finding student..!" });
-    }
+    // if (student) {
+    //   res.status(201).json({
+    //     _id: student._id,
+    //     student_name: student_name,
+    //     student_id: student_id,
+    //     student_course: student_course,
+    //     student_semester: student_semester,
+    //     student_class: student_class,
+    //     student_contact_number: student_contact_number,
+    //     student_email: student_email,
+    //     student_home_address: student_home_address,
+    //     student_city: student_city,
+    //     father_name: father_name,
+    //     father_email: father_email,
+    //     father_contact_number: father_contact_number,
+    //     father_city: father_city,
+    //   });
+    // } else {
+    //   res.status(401).send({ message: "Error occurd in finding student..!" });
+    // }
   } catch (error) {
     next(error);
   }

@@ -10,8 +10,7 @@ const teacherSchema = new mongoose.Schema(
     faculty_name: {
       type: String,
       required: true,
-    }
-    ,
+    },
     contact_number: {
       type: Number,
       required: true,
