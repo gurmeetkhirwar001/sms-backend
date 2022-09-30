@@ -1,10 +1,10 @@
-const Attendance = require("../models/attendanceModel");
+const Teacher_Attendance = require("../models/Teacher-attendance.Model");
 
 // API to create Attendance
-const registerAttendance = async (req, res, next) => {
+const registerTeacher_Attendance = async (req, res, next) => {
   // res.send("attendance route is working...")
   try {
-    const attendance = await Attendance.create(req.body);
+    const attendance = await Teacher_Attendance.create(req.body);
     res.send(attendance);
   } catch (error) {
     console.log("error:", error.message);
@@ -12,12 +12,14 @@ const registerAttendance = async (req, res, next) => {
 };
 
 // API to get all the Attendance
-const getAllAttendance = async (req, res, next) => {
+const getAllTeacher_Attendance = async (req, res, next) => {
   try {
-    const attendance = await Attendance.find().populate(
-      {
-        path:"techer_id",select:["techer_name"]
-      }
+    const attendance = await Teacher_Attendance.find().populate(
+        {
+            
+                path:"teacher_id",select:["faculty_name"]
+              }
+          
     );
     if (attendance) {
       return res.status(200).send(attendance);
@@ -32,9 +34,9 @@ const getAllAttendance = async (req, res, next) => {
 
 // API to get single Attendance
 
-const getSingleAttendance = async (req, res, next) => {
+const getSingleTeacher_Attendance = async (req, res, next) => {
   try {
-    const attendance = await Attendance.findOne({ _id: req.params.id });
+    const attendance = await Teacher_Attendance.findOne({ _id: req.params.id });
     // .populate("student_id");
     if (attendance) {
       return res.status(200).send(attendance);
@@ -48,9 +50,9 @@ const getSingleAttendance = async (req, res, next) => {
 };
 
 // API to update the Attendance
-const updateAttendance = async (req, res, next) => {
+const updateTeacher_Attendance = async (req, res, next) => {
   try {
-    const attendance = await Attendance.updateOne(
+    const attendance = await Teacher_Attendance.updateOne(
       { _id: req.params.id },
       {
         $set: req.body,
@@ -70,10 +72,10 @@ const updateAttendance = async (req, res, next) => {
 };
 
 // API to delete the Attendance
-const deleteAttendance = async (req, res, next) => {
+const deleteTeacher_Attendance = async (req, res, next) => {
   try {
     // console.log('req.params.id :', req.params.id )
-    const attendance = await Attendance.deleteOne({ _id: req.params.id });
+    const attendance = await Teacher_Attendance.deleteOne({ _id: req.params.id });
     if (attendance) {
       return res
         .status(200)
@@ -88,9 +90,9 @@ const deleteAttendance = async (req, res, next) => {
 };
 
 module.exports = {
-  registerAttendance,
-  getAllAttendance,
-  getSingleAttendance,
-  updateAttendance,
-  deleteAttendance,
+  registerTeacher_Attendance,
+  getAllTeacher_Attendance,
+  getSingleTeacher_Attendance,
+  updateTeacher_Attendance,
+  deleteTeacher_Attendance,
 };

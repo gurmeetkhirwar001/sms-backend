@@ -13,6 +13,8 @@ const Routes = require("./routes");
 const studentRoute = require("./routes/studentRoute");
 const teacherRoutes = require("./routes/teacherRoute");
 const attendanceRoutes = require("./routes/attendanceRoute");
+const teacher_attendanceRoutes = require('./routes/Teacher_attendanceRoute');
+const assignclassRoutes = require('./routes/assignclassRoute')
 const corsOptions = {
   origin: process.env.AccessURL,
   optionsSuccessStatus: 200,
@@ -33,6 +35,8 @@ app.use("/api/user", Routes.UserRoutes);
 app.use("/api/student", studentRoute); // Student routes
 app.use("/api/teacher", teacherRoutes); // teacher routes
 app.use("/api/attendance", attendanceRoutes); // attendance routes
+app.use("/api/teacher_attendance", teacher_attendanceRoutes); // teacherattendance routes
+app.use("/api/assignclass",assignclassRoutes); //assign
 
 app.use(errorHandler);
 app.listen(process.env.PORT, () => {

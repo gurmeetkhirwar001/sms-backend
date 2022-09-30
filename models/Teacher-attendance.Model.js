@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const attendenceSchema = new mongoose.Schema(
+const teacherattendenceSchema = new mongoose.Schema(
   {
-    student_id: {
+    teacher_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "teacher",
       required: true,
     },
     is_present: {
@@ -15,7 +15,6 @@ const attendenceSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
-    date:{type:Date, required:true},
   },
   {
     versionKey: false, // removed __v
@@ -23,5 +22,5 @@ const attendenceSchema = new mongoose.Schema(
   }
 );
 
-const Attendance = mongoose.model("attendence", attendenceSchema);
-module.exports = Attendance;
+const Teacher_Attendance = mongoose.model("teacherattendence", teacherattendenceSchema);
+module.exports = Teacher_Attendance;
