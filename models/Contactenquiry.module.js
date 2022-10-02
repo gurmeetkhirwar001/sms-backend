@@ -2,7 +2,16 @@ const mongoose = require("mongoose");
 
 const enquirySchema = new mongoose.Schema(
   {
-    
+    studentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    student_id: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
     student_name: {
       type: String,
       
@@ -19,6 +28,10 @@ const enquirySchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    description:{
+      type: String,
+      required: true,
+    }
   
     
   },

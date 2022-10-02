@@ -4,7 +4,7 @@ const teacherSchema = new mongoose.Schema(
   {
     teacher_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "teacher",
+      ref: "User",
       required: true,
     },
     faculty_name: {
@@ -19,6 +19,10 @@ const teacherSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+    },
+    passowrd:{
+      type: String,
+      required: true,
     },
     father_name: {
       type: String,
@@ -44,10 +48,18 @@ const teacherSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
+    offical_imformation:{
+      type: String,
+      required: true,
+    },
     semester: {
       type: Array,
       required: true,
     },
+    upload_file:{
+       type:String,
+       require:true
+    }
   },
   {
     versionKey: false, // removed __v

@@ -316,10 +316,10 @@ doctrine@3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dotenv@^16.0.2:
-  version "16.0.2"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.2.tgz#0b0f8652c016a3858ef795024508cddc4bffc5bf"
-  integrity sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA==
+dotenv@^16.0.3:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 ecdsa-sig-formatter@1.0.11:
   version "1.0.11"
@@ -730,10 +730,10 @@ mongodb@4.9.1:
   optionalDependencies:
     saslprep "^1.0.3"
 
-mongoose@^6.6.2:
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.6.2.tgz#162d651ee830f06c6fd2c8a5886646a5828c0458"
-  integrity sha512-SrB0DgB1Ime/xh4Tr2yLkFKO5Aa/FrDyAo/ILGDWM5qjhZdhl7HKftiQPibwywC3rTkeU4nc2yuPYKFLBYCBWA==
+mongoose@^6.6.3:
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.6.3.tgz#9c6ab3bc12a00fa41213e54ba2c898254bdaefe3"
+  integrity sha512-2Ye018PNBBXJd717qhfjBGo7k8HQb/pKziO9d5wY14iZSUI7hxqL7bwNDg+poeBwnlhBYLncZkips15Blfgxbw==
   dependencies:
     bson "^4.6.5"
     kareem "2.4.1"
