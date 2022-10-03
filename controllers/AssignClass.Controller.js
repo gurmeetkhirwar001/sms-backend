@@ -2,7 +2,7 @@ const AssignClass = require("../models/AssignClass.Model");
 
 
 
-// API to create Teacher
+// API to create Assign
 const registerassign = async(req,res, next) => {
     // res.send("teacher route is working...")
     try {
@@ -14,14 +14,14 @@ const registerassign = async(req,res, next) => {
 }
 
 
-// API to get all the teacher
+// API to get all the Assign
 const findAssign = async(req, res, next) => {
     try {
         const assign = await AssignClass.find();
         if(assign){
-            return res.status(200).send(teacher)
+            return res.status(200).send(assign)
         } else {
-            res.status(404).send({ message: "Teacher not found..!" });
+            res.status(404).send({ message: "Assignment not found..!" });
         }
         res.send(assign)
     } catch (error) {
@@ -29,7 +29,7 @@ const findAssign = async(req, res, next) => {
     }
 }
 
-// API to get single Teacher
+// API to get single Assign
 
 const getSingleAssign = async(req, res, next) => {
     try {
@@ -37,7 +37,7 @@ const getSingleAssign = async(req, res, next) => {
         if(assign){
             return res.status(200).send(assign)
         } else {
-            res.status(404).send({ message: "Teacher not found..!" });
+            res.status(404).send({ message: "Assignment not found..!" });
         }
         res.send(assign)
     } catch (error) {
@@ -45,7 +45,7 @@ const getSingleAssign = async(req, res, next) => {
     }
 }
 
-// API to update the Teacher
+// API to update the Assign
 const updateassign = async (req, res, next) => {
     try {
       const assign = await AssignClass.updateOne(
@@ -57,7 +57,7 @@ const updateassign = async (req, res, next) => {
       if (assign) {
         return res
           .status(200)
-          .send({ message: "Teacher updated successfully..!" });
+          .send({ message: "Assignment updated successfully..!" });
       } else {
         res.status(404).send({ message: "Update operation failed...!" });
       }
@@ -67,7 +67,7 @@ const updateassign = async (req, res, next) => {
     }
   };
 
-// API to delete the teacher
+// API to delete the Assign
 const deleteassign = async (req, res, next) => {
     try {
       // console.log('req.params.id :', req.params.id )
@@ -75,7 +75,7 @@ const deleteassign = async (req, res, next) => {
       if (assign) {
         return res
           .status(200)
-          .send({ message: "Teacher deleted successfully..!" });
+          .send({ message: "Assignment deleted successfully..!" });
       } else {
         res.status(404).send({ message: "Delete operation failed...!" });
       }

@@ -1,6 +1,6 @@
 const Enquiry = require("../models/Contactenquiry.module");
 
-// API to create Attendance
+// API to create Enquiry
 const createEnquiry = async (req, res, next) => {
   // res.send("attendance route is working...")
   try {
@@ -11,7 +11,7 @@ const createEnquiry = async (req, res, next) => {
   }
 };
 
-// API to get all the Attendance
+// API to get all the Enquiry
 const getContactenquiry = async (req, res, next) => {
   try {
     const Contactenquiry = await Enquiry.find()
@@ -19,7 +19,7 @@ const getContactenquiry = async (req, res, next) => {
     if (Contactenquiry) {
       return res.status(200).send(Contactenquiry);
     } else {
-      res.status(404).send({ message: "Attendance not found..!" });
+      res.status(404).send({ message: "ContactEnquiry not found..!" });
     }
     res.send(Contactenquiry);
   } catch (error) {
@@ -27,16 +27,16 @@ const getContactenquiry = async (req, res, next) => {
   }
 };
 
-//API to get single Attendance
+//API to get single Enquiry
 
 const getSingleEnquiry = async (req, res, next) => {
   try {
     const Contactenquiry = await Enquiry.findOne({ _id: req.params.id });
-    // .populate("student_id");
+    
     if (Contactenquiry) {
       return res.status(200).send(Contactenquiry);
     } else {
-      res.status(404).send({ message: "Attendance not found..!" });
+      res.status(404).send({ message: " ContactEnquiry not found..!" });
     }
     res.send(Contactenquiry);
   } catch (error) {
@@ -44,7 +44,7 @@ const getSingleEnquiry = async (req, res, next) => {
   }
 };
 
-//API to update the Attendance
+//API to update the Enquiry
 const updateenquiry = async (req, res, next) => {
   try {
     const Contactenquiry = await Enquiry.updateOne(
@@ -56,9 +56,9 @@ const updateenquiry = async (req, res, next) => {
     if (Contactenquiry) {
       return res
         .status(200)
-        .send({ message: "Attendance updated successfully..!" });
+        .send({ message: "ContactEnquiry updated successfully..!" });
     } else {
-      res.status(404).send({ message: "Update operation failed...!" });
+      res.status(404).send({ message: "Update ContactEnquiry failed...!" });
     }
     res.send(Contactenquiry);
   } catch (error) {
@@ -66,7 +66,7 @@ const updateenquiry = async (req, res, next) => {
   }
 };
 
-// API to delete the Attendance
+// API to delete the Enquiry
 const deletenquiry = async (req, res, next) => {
   try {
     // console.log('req.params.id :', req.params.id )
@@ -74,7 +74,7 @@ const deletenquiry = async (req, res, next) => {
     if (Contactenquiry) {
       return res
         .status(200)
-        .send({ message: "Attendance deleted successfully..!" });
+        .send({ message: "ContactEnquiry deleted successfully..!" });
     } else {
       res.status(404).send({ message: "Delete operation failed...!" });
     }

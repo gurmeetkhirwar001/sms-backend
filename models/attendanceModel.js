@@ -4,7 +4,7 @@ const attendenceSchema = new mongoose.Schema(
   {
     student_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "student",
       required: true,
     },
     is_present: {
@@ -15,7 +15,7 @@ const attendenceSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
-    date:{type:Date, required:true},
+   
   },
   {
     versionKey: false, // removed __v

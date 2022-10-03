@@ -16,7 +16,7 @@ const getAllAttendance = async (req, res, next) => {
   try {
     const attendance = await Attendance.find().populate(
       {
-        path:"techer_id",select:["techer_name"]
+        path:"student_id",select:["student_name"]
       }
     );
     if (attendance) {

@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 
-const assignClassSchema = new mongoose.Schema(
+const ScheduleSchema = new mongoose.Schema(
   {
     class: {
       type: mongoose.Schema.Types.ObjectId,
@@ -15,31 +15,19 @@ const assignClassSchema = new mongoose.Schema(
       required: true,
       },
       class: {
-        type: String,
+        type: Array,
         required: true,
       },
-      assign_substition:{
-        type:String,
-        required: true,
-        
-       },
-        lecture: {
-        type: Array,
+    
+        Enter_Title: {
+        type: String,
         required: true,
       },
       course: {
         type: Array,
         required: true,
       },
-      semester: {
-        type: Array,
-        required: true,
-      },
-      select_time:{
-        type:String,
-        required:true,
-      }
-    
+      
   },
   {
     versionKey: false, // removed __v
@@ -47,5 +35,5 @@ const assignClassSchema = new mongoose.Schema(
   }
 );
 
-const AssignClass = mongoose.model("assignclass", assignClassSchema);
-module.exports = AssignClass;
+const Schedule = mongoose.model("Schedule", ScheduleSchema);
+module.exports = Schedule;
