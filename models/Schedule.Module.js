@@ -15,16 +15,16 @@ const ScheduleSchema = new mongoose.Schema(
       required: true,
       },
       class: {
-        type: Array,
+        type: String,
         required: true,
       },
     
         Enter_Title: {
-        type: String,
+        type:String,
         required: true,
       },
       course: {
-        type: Array,
+        type: String,
         required: true,
       },
       image:{

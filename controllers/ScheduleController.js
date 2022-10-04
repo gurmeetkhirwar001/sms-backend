@@ -1,13 +1,14 @@
 
 const Schedule = require("../models/Schedule.Module");
-
+const { s3Upload } = require("../S3");
 
 
 // API to create schedule
 const registerSchedule = async(req,res, next) => {
   
     try {
-      console.log(req.file.path);
+      await  s3Upload(req.body);
+      console.log(res.body)
         const schedule = await Schedule.create(req.body);
        
         res.send(schedule);
