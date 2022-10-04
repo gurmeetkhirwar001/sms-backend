@@ -9,6 +9,9 @@ const {
 const router = express.Router();
 // const { s3Upload } = require("../utils/s3")
 
+
+
+
 router.post("/create-document",registerDocument);
 router.get("/get-document", getAllDocument);
 router.get("/get-single-document/:id", getSingleDocument);
