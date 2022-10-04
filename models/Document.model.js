@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 
-const ScheduleSchema = new mongoose.Schema(
+const documentSchema = new mongoose.Schema(
   {
     class: {
       type: mongoose.Schema.Types.ObjectId,
@@ -15,10 +15,10 @@ const ScheduleSchema = new mongoose.Schema(
       required: true,
       },
       class: {
-        type: Array,
+        type: String,
         required: true,
       },
-    
+     
         Enter_Title: {
         type: String,
         required: true,
@@ -27,10 +27,15 @@ const ScheduleSchema = new mongoose.Schema(
         type: Array,
         required: true,
       },
-      image:{
-        type: String,
-       
+      semester: {
+        type: Array,
+        required: true,
+      },
+      Enter_Description:{
+        type:String,
+        required:true,
       }
+    
   },
   {
     versionKey: false, // removed __v
@@ -38,5 +43,5 @@ const ScheduleSchema = new mongoose.Schema(
   }
 );
 
-const Schedule = mongoose.model("Schedule", ScheduleSchema);
-module.exports = Schedule;
+const Document = mongoose.model("Document", documentSchema);
+module.exports = Document;

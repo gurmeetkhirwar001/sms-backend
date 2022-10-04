@@ -17,6 +17,9 @@ const teacher_attendanceRoutes = require('./routes/Teacher_attendanceRoute');
 const assignclassRoutes = require('./routes/assignclassRoute')
 const ContactenquiryRoutes = require('./routes/ContactenquiryRoute')
 const ScheduleRoutes = require("./routes/ScheduleRoute")
+const EventRoutes = require('./routes/eventRoute')
+const DocumentRoutes = require('./routes/DocumentRoute')
+//const Upload = require('./controllers/uploadFileController')
 const corsOptions = {
   origin: process.env.AccessURL,
   optionsSuccessStatus: 200,
@@ -41,6 +44,9 @@ app.use("/api/teacher_attendance", teacher_attendanceRoutes); // teacherattendan
 app.use("/api/assignclass",assignclassRoutes); //assign
 app.use("/api/enquiry",ContactenquiryRoutes); //enquiry
 app.use("/api/schedule",ScheduleRoutes); //schedule
+app.use("/api/admin/event",EventRoutes); //event
+app.use("/api/admin/document",DocumentRoutes); //event
+ //app.use("/api/upload",Upload)
 
 app.use(errorHandler);
 app.listen(process.env.PORT, () => {

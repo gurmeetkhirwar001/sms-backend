@@ -1,55 +1,54 @@
-import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3"
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+const AWS = require('aws-sdk')
+const randomstring = require('randomstring')
+const {
+  S3_BUCKET_NAME,
+  AWS_REGION,
+  S3_BUCKET_URL,
+  ACCESS_KEY,
+  SECRET_KEY
+} = process.env
 
-import dotenv from 'dotenv'
+AWS.config.region = AWS_REGION
 
-dotenv.config()
-
-const bucketName = process.env.AWS_BUCKET_NAME
-const region = process.env.AWS_BUCKET_REGION
-const accessKeyId = process.env.AWS_ACCESS_KEY
-const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
-
-
-const s3Client = new S3Client({
-  region,
-  credentials: {
-    accessKeyId,
-    secretAccessKey
-  }
+const s3 = new AWS.S3({
+  accessKeyId: ACCESS_KEY,
+  secretAccessKey: SECRET_KEY
 })
 
+const s3Upload = async (file, name, fileName) => {
 
-export function uploadFile(fileBuffer, fileName, mimetype) {
-  const uploadParams = {
-    Bucket: bucketName,
-    Body: fileBuffer,
-    Key: fileName,
-    ContentType: mimetype
+  try {
+    const { buffer, originalname, mimetype } = file
+    let name = randomstring.generate({
+      length: 12,
+      charset: 'alphabetic'
+    })
+
+    const Key = originalname.replace(' ', '+')    
+
+    const s3Options = {
+      Body: buffer,
+      Key,
+      Bucket: S3_BUCKET_NAME,
+      ACL: 'public-read',
+      ContentType: mimetype,
+      Metadata: {
+        name
+      }
+    }
+
+    await s3.putObject(s3Options).promise()
+
+    return {
+      link: `${S3_BUCKET_URL}/${s3Options.Key}`,
+      mediaName: name,
+      mediaType: mimetype
+    }
+  } catch (err) {
+    return err
   }
-
-  return s3Client.send(new PutObjectCommand(uploadParams));
 }
 
-export function deleteFile(fileName) {
-  const deleteParams = {
-    Bucket: bucketName,
-    Key: fileName,
-  }
-
-  return s3Client.send(new DeleteObjectCommand(deleteParams));
+module.exports = {
+  s3Upload
 }
-
-export async function getObjectSignedUrl(key) {
-  const params = {
-    Bucket: bucketName,
-    Key: key
-  }
-
-  // https://aws.amazon.com/blogs/developer/generate-presigned-url-modular-aws-sdk-javascript/
-  const command = new GetObjectCommand(params);
-  const seconds = 60
-  const url = await getSignedUrl(s3Client, command, { expiresIn: seconds });
-
-  return url
-}                               

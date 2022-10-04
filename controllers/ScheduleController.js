@@ -7,6 +7,7 @@ const Schedule = require("../models/Schedule.Module");
 const registerSchedule = async(req,res, next) => {
   
     try {
+      console.log(req.file.path);
         const schedule = await Schedule.create(req.body);
        
         res.send(schedule);
@@ -15,32 +16,6 @@ const registerSchedule = async(req,res, next) => {
     }
 }
 
-// app.post('/api/posts', upload.single('image'), async (req, res) => {
-//   const file = req.file
-//   const caption = req.body.caption
-//   const imageName = generateFileName()
-
-//   const fileBuffer = await sharp(file.buffer)
-//     .resize({ height: 1920, width: 1080, fit: "contain" })
-//     .toBuffer()
-
-//   await uploadFile(fileBuffer, imageName, file.mimetype)
-
-//   const post = await prisma.posts.create({
-//     data: {
-//       imageName,
-//       caption,
-//     }
-//   })
-  
-//   res.status(201).send(post)
-// })
-
-
-// if(req.files && req.files.media){
-//   const file= req.files.media;
-//   const uploadRes = await fileUploadService.uploadFileToAws(file);
-//   return res.send(uploadRes);
 
 // API to get all the schedule
 const findSchedule = async(req, res, next) => {
@@ -78,6 +53,7 @@ const updateSchedule = async (req, res, next) => {
     try {
       const schedule = await Schedule.updateOne(
         { _id: req.params.id },
+        { userImage: req.file.path },
         {
           $set: req.body,
         }
