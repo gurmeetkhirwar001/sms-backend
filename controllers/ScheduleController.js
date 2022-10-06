@@ -1,8 +1,8 @@
 
 const Schedule = require("../models/Schedule.Module");
-const { s3Upload } = require("../S3");
+const { s3Upload } = require("../Utils/S3");
 const responseHandler = require("../helpers/responseHandler");
-const Upload = require("../uploadFile");
+
 
 // API to create schedule
 const registerSchedule = async(req,res, next) => {
@@ -10,10 +10,10 @@ const registerSchedule = async(req,res, next) => {
     try {
       //"message": "The bucket does not allow ACLs",
       const upload =await  s3Upload(req.file);
-      console.log(upload)
+      // console.log(upload)
       
-        // const schedule = await   Schedule.create(req.body);
-        // responseHandler.data(res, schedule,upload, 200);
+        const schedule = await   Schedule.create(req.body);
+        responseHandler.data(res, schedule,upload, 200);
         // res.send(upload);
     }  catch (error) {
         console.log("error:", error.message);
