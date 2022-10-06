@@ -38,6 +38,18 @@ const studentAttendanceSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    attendence_time: {
+      type: Date,
+      default: Date.now(),
+    },
+  //   totalLecturesByFaculty: {
+  //     type: Number,
+  //     default:0
+  // },
+  lectureAttended: {
+      type: Number,
+      default:0
+  }
   },
   {
     versionKey: false, // removed __v

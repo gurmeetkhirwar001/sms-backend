@@ -7,12 +7,13 @@ const {
   deleteDocument,
 } = require("../controllers/document.controller");
 const router = express.Router();
+const multer = require("multer")
 // const { s3Upload } = require("../utils/s3")
 
 
 
 
-router.post("/create-document",registerDocument);
+router.post("/create-document", multer().single('file'),registerDocument);
 router.get("/get-document", getAllDocument);
 router.get("/get-single-document/:id", getSingleDocument);
 router.put("/update-document/:id", updateDocument);

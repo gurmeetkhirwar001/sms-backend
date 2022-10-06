@@ -28,7 +28,7 @@ const s3Upload = async (file, name, fileName) => {
 
     const s3Options = {
       Body: buffer,
-      Key,
+      Key:file.name,
       Bucket: S3_BUCKET_NAME,
       ACL: 'public-read',
       ContentType: mimetype,

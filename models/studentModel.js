@@ -16,6 +16,16 @@ const studentSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    student_course:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "course",
+      required: true,
+    },
+    student_class:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "class",
+      required: true,
+    },
     student_course: {
       type: String,
       required: true,

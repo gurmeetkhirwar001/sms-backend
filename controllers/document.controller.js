@@ -1,11 +1,14 @@
 // const { response } = require("express");
 const Document = require("../models/document.model");
 const responseHandler = require("../helpers/responseHandler");
+const {s3Upload} = require("../utils/s3")
 //api to register document;
 const registerDocument = async (req, res, next) => {
   try {
-    const document = await Document.create(req.body);
-      return res.status(200).send(document);
+    const upload = await s3Upload(req.file)
+    console.log(upload);
+    // const document = await Document.create(req.body);
+    //   return res.status(200).send(document);
     // responseHandler.data((res, document, 200));
   } catch (error) {
     next("error:", error.message);

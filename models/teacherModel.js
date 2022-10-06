@@ -48,6 +48,10 @@ const teacherSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
+       totalLecturesByFaculty: {
+      type: Number,
+      default:0
+  },
   },
   {
     versionKey: false, // removed __v

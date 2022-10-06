@@ -15,6 +15,14 @@ const attendenceSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    student_course:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "course",
+    },
+    student_class:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "class",
+    }
   },
   {
     versionKey: false, // removed __v

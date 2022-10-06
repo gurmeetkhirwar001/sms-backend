@@ -1,12 +1,15 @@
 // const { response } = require("express");
 const  Event = require("../models/event.model");
 const responseHandler = require("../helpers/responseHandler");
+const {s3Upload} = require("../utils/s3")
 //api to register event;
 const registerEvent = async (req, res, next) => {
   try {
-    const event = await Event.create(req.body);
-    return res.status(200).send(event);
-    // responseHandler.data((res, event, 200));
+    const upload = await s3Upload(req.file)
+    console.log(upload)
+    // const event = await Event.create(req.body);
+    // // return res.status(200).send(event);
+    // responseHandler.data(res, event, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -17,11 +20,11 @@ const getAllEvent = async (req, res, next) => {
     const event = await Event.find().lean().exec();
     if (event) {
       return res.status(200).send(event);
-      // responseHandler.data(res, event, 200);
+      
     } else {
       res.status(404).send({ message: "Event not found..!" });
     }
-    res.send(event);
+    responseHandler.data(res, event, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -36,7 +39,7 @@ const getSingleEvent = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Event not found" });
     }
-    res.send(event);
+    responseHandler.data(res, event, 200);
   } catch (error) {
     next("error:", error.message);
   }

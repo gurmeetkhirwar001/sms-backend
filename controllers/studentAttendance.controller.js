@@ -14,7 +14,7 @@ const registerStudentAttendance = async (req, res, next) => {
 // api to get all document
 const getAllStudentAttendance = async (req, res, next) => {
   try {
-    const studentAttendance = await StudentAttendance.find().lean().exec().poulate({path:"student_id", select:["student_name"]});
+    const studentAttendance = await StudentAttendance.find().lean().exec();
     if (studentAttendance) {
       return res.status(200).send(studentAttendance);
       // responseHandler.data(res, document, 200);
