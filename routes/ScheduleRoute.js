@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const {
     registerSchedule, findSchedule, 
     getSingleSchedule, updateSchedule, deleteSchedule
@@ -10,7 +11,7 @@ const {
 
 const router = express.Router();
 
-router.post("/create-schedule", registerSchedule);
+router.post("/create-schedule",multer().single('file'), registerSchedule);
 router.get("/get-schedule", findSchedule);
 router.get("/get-single-schedule/:id", getSingleSchedule);
 router.put("/update-schedule/:id", updateSchedule);

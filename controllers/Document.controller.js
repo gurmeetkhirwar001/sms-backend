@@ -1,11 +1,11 @@
 const Document = require("../models/Document.model");
-
+const responseHandler = require("../helpers/responseHandler");
 // API to create Enquiry
 const createdocument = async (req, res, next) => {
   // res.send("attendance route is working...")
   try {
     const document = await Document.create(req.body);
-    res.send(document);
+    responseHandler.data(res, document, 200);
   } catch (error) {
     console.log("error:", error.message);
   }
@@ -21,7 +21,7 @@ const getDocument = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Document not found..!" });
     }
-    res.send(document);
+    responseHandler.data(res, document, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -38,7 +38,7 @@ const getSingleDocument = async (req, res, next) => {
     } else {
       res.status(404).send({ message: " ContactEnquiry not found..!" });
     }
-    res.send(document);
+    responseHandler.data(res, document, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -60,7 +60,7 @@ const updateDocument = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Update Document failed...!" });
     }
-    res.send(document);
+    responseHandler.data(res, document, 200);
   } catch (error) {
     next("message", error.message);
   }
@@ -78,7 +78,7 @@ const DeleteDocument = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Delete operation failed...!" });
     }
-    res.send(document);
+    responseHandler.data(res, document, 200);
   } catch (error) {
     next("message", error.message);
   }

@@ -1,13 +1,13 @@
 const AssignClass = require("../models/AssignClass.Model");
-
+const responseHandler = require("../helpers/responseHandler");
 
 
 // API to create Assign
 const registerassign = async(req,res, next) => {
     // res.send("teacher route is working...")
     try {
-        const Assign = await AssignClass.create(req.body);
-        res.send(Assign)
+        const assign = await AssignClass.create(req.body);
+        responseHandler.data(res, assign, 200);
     } catch (error) {
         next(error) 
     }
@@ -23,7 +23,8 @@ const findAssign = async(req, res, next) => {
         } else {
             res.status(404).send({ message: "Assignment not found..!" });
         }
-        res.send(assign)
+        responseHandler.data(res, assign, 200);
+      
     } catch (error) {
         next('error:', error.message);
     }
@@ -39,7 +40,7 @@ const getSingleAssign = async(req, res, next) => {
         } else {
             res.status(404).send({ message: "Assignment not found..!" });
         }
-        res.send(assign)
+        responseHandler.data(res, assign, 200);
     } catch (error) {
         next('error:', error.message);
     }
@@ -61,7 +62,7 @@ const updateassign = async (req, res, next) => {
       } else {
         res.status(404).send({ message: "Update operation failed...!" });
       }
-      res.send(assign);
+      responseHandler.data(res, assign, 200);
     } catch (error) {
       next("message", error.message);
     }
@@ -79,7 +80,7 @@ const deleteassign = async (req, res, next) => {
       } else {
         res.status(404).send({ message: "Delete operation failed...!" });
       }
-      res.send(assign);
+      responseHandler.data(res, assign, 200);
     } catch (error) {
       next("message", error.message);
     }

@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Student = require("../models/studentModel");
 const router = require("../routes/studentRoute");
-
+const responseHandler = require("../helpers/responseHandler");
 // API to create the student
 
 const registerStudent = asyncHandler(async (req, res, next) => {
@@ -29,7 +29,8 @@ const registerStudent = asyncHandler(async (req, res, next) => {
     // }
 
     const student = await Student.create(req.body );
-    res.send(student)
+    responseHandler.data(res, student, 200);
+    // res.send(student)
     //   {
     //   student_name,
     //   student_id,

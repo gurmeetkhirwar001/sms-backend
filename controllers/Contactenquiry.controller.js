@@ -1,11 +1,11 @@
 const Enquiry = require("../models/Contactenquiry.module");
-
+const responseHandler = require("../helpers/responseHandler");
 // API to create Enquiry
 const createEnquiry = async (req, res, next) => {
   // res.send("attendance route is working...")
   try {
     const Contactenquiry = await Enquiry.create(req.body);
-    res.send(Contactenquiry);
+    responseHandler.data(res, Contactenquiry, 200);
   } catch (error) {
     console.log("error:", error.message);
   }
@@ -21,7 +21,7 @@ const getContactenquiry = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "ContactEnquiry not found..!" });
     }
-    res.send(Contactenquiry);
+    responseHandler.data(res, Contactenquiry, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -38,7 +38,7 @@ const getSingleEnquiry = async (req, res, next) => {
     } else {
       res.status(404).send({ message: " ContactEnquiry not found..!" });
     }
-    res.send(Contactenquiry);
+    responseHandler.data(res, Contactenquiry, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -60,7 +60,7 @@ const updateenquiry = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Update ContactEnquiry failed...!" });
     }
-    res.send(Contactenquiry);
+    responseHandler.data(res, Contactenquiry, 200);
   } catch (error) {
     next("message", error.message);
   }
@@ -78,7 +78,7 @@ const deletenquiry = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Delete operation failed...!" });
     }
-    res.send(Contactenquiry);
+    responseHandler.data(res, Contactenquiry, 200);
   } catch (error) {
     next("message", error.message);
   }

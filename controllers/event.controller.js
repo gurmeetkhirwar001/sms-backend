@@ -1,11 +1,11 @@
 const Event = require("../models/event.model");
-
+const responseHandler = require("../helpers/responseHandler");
 // API to create Enquiry
 const createEvent = async (req, res, next) => {
   // res.send("attendance route is working...")
   try {
     const event = await Event.create(req.body);
-    res.send(event);
+    responseHandler.data(res, event, 200);
   } catch (error) {
     console.log("error:", error.message);
   }
@@ -21,7 +21,7 @@ const getEvent = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Event not found..!" });
     }
-    res.send(event);
+    responseHandler.data(res, event, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -38,7 +38,7 @@ const getSingleEvent = async (req, res, next) => {
     } else {
       res.status(404).send({ message: " Event not found..!" });
     }
-    res.send(event);
+    responseHandler.data(res, event, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -60,7 +60,7 @@ const updateEvent = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Update Event failed...!" });
     }
-    res.send(event);
+    responseHandler.data(res, event, 200);
   } catch (error) {
     next("message", error.message);
   }
@@ -78,7 +78,7 @@ const deleteEvent = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Delete operation failed...!" });
     }
-    res.send(event);
+    responseHandler.data(res, event, 200);
   } catch (error) {
     next("message", error.message);
   }

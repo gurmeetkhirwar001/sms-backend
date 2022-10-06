@@ -1,17 +1,20 @@
 
 const Schedule = require("../models/Schedule.Module");
 const { s3Upload } = require("../S3");
-
+const responseHandler = require("../helpers/responseHandler");
+const Upload = require("../uploadFile");
 
 // API to create schedule
 const registerSchedule = async(req,res, next) => {
   
     try {
-      await  s3Upload(req.body);
-      console.log(res.body)
-        const schedule = await Schedule.create(req.body);
-       
-        res.send(schedule);
+      //"message": "The bucket does not allow ACLs",
+      const upload =await  s3Upload(req.file);
+      console.log(upload)
+      
+        // const schedule = await   Schedule.create(req.body);
+        // responseHandler.data(res, schedule,upload, 200);
+        // res.send(upload);
     }  catch (error) {
         console.log("error:", error.message);
     }
@@ -27,7 +30,7 @@ const findSchedule = async(req, res, next) => {
         } else {
             res.status(404).send({ message: "schedule not found..!" });
         }
-        res.send(schedule)
+        responseHandler.data(res, schedule, 200);
     } catch (error) {
         next('error:', error.message);
     }
@@ -43,7 +46,7 @@ const getSingleSchedule = async(req, res, next) => {
         } else {
             res.status(404).send({ message: "schedule not found..!" });
         }
-        res.send(schedule)
+        responseHandler.data(res, schedule, 200);
     } catch (error) {
         next('error:', error.message);
     }
@@ -66,7 +69,7 @@ const updateSchedule = async (req, res, next) => {
       } else {
         res.status(404).send({ message: "Update operation failed...!" });
       }
-      res.send(schedule);
+      responseHandler.data(res, schedule, 200);
     } catch (error) {
       next("message", error.message);
     }
@@ -84,7 +87,7 @@ const deleteSchedule = async (req, res, next) => {
       } else {
         res.status(404).send({ message: "Delete operation failed...!" });
       }
-      res.send(schedule);
+      responseHandler.data(res, schedule, 200);
     } catch (error) {
       next("message", error.message);
     }

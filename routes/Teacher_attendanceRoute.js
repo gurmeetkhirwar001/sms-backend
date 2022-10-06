@@ -9,7 +9,7 @@ const {
 
 const router = express.Router();
 
-router.post("/create-teacher_attendance", registerTeacher_Attendance);
+router.post("/create-teacher_attendance",registerTeacher_Attendance);
 router.get("/get-teacher_attendance", getAllTeacher_Attendance);
 router.get("/get-single-teacher_attendance/:id", getSingleTeacher_Attendance);
 router.put("/update-teacher_attendance/:id", updateTeacher_Attendance);

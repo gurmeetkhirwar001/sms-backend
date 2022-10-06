@@ -1,12 +1,13 @@
 const Teacher = require("../models/teacherModel");
 
-
+const responseHandler = require("../helpers/responseHandler");
 // API to create Teacher
 const registerTeacher = async(req,res, next) => {
     // res.send("teacher route is working...")
     try {
         const teacher = await Teacher.create(req.body);
-        res.send(teacher)
+        responseHandler.data(res, teacher, 200);
+        // res.send(teacher)
     } catch (error) {
         next(error) 
     }
@@ -22,7 +23,8 @@ const findTeacher = async(req, res, next) => {
         } else {
             res.status(404).send({ message: "Teacher not found..!" });
         }
-        res.send(teacher)
+        responseHandler.data(res, teacher, 200);
+        // res.send(teacher)
     } catch (error) {
         next('error:', error.message);
     }
@@ -38,7 +40,8 @@ const getSingleTeacher = async(req, res, next) => {
         } else {
             res.status(404).send({ message: "Teacher not found..!" });
         }
-        res.send(teacher)
+        responseHandler.data(res, teacher, 200);
+        // res.send(teacher)
     } catch (error) {
         next('error:', error.message);
     }
@@ -60,7 +63,8 @@ const updateTeacher = async (req, res, next) => {
       } else {
         res.status(404).send({ message: "Update operation failed...!" });
       }
-      res.send(teacher);
+      responseHandler.data(res, teacher, 200);
+      // res.send(teacher);
     } catch (error) {
       next("message", error.message);
     }
@@ -78,7 +82,8 @@ const deleteTeacher = async (req, res, next) => {
       } else {
         res.status(404).send({ message: "Delete operation failed...!" });
       }
-      res.send(teacher);
+      responseHandler.data(res, teacher, 200);
+      // res.send(teacher);
     } catch (error) {
       next("message", error.message);
     }

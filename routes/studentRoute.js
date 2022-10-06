@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const {
   registerStudent,
   getAllStudent,
@@ -12,7 +13,7 @@ const router = express.Router();
 //     res.send("router is working properly...")
 //  });
 
-router.post("/create-student", registerStudent);
+router.post("/create-student",multer().single('file'), registerStudent);
 router.get("/get-student", getAllStudent);
 router.get("/get-single-student/:id", getSingleStudent);
 router.put("/update-student/:id", updateStudent);

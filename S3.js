@@ -30,6 +30,7 @@ const s3Upload = async (file, name, fileName) => {
       Body: buffer,
       Key,
       Bucket: S3_BUCKET_NAME,
+      //"message": "The bucket does not allow ACLs",
       ACL: 'public-read',
       ContentType: mimetype,
       Metadata: {

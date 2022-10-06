@@ -1,5 +1,6 @@
 
 const express = require("express");
+const multer = require("multer");
 const {
     createdocument,
     getDocument,
@@ -11,7 +12,7 @@ const {
 
 const router = express.Router();
 
-router.post("/create-document",createdocument, );
+router.post("/create-document",multer().single('file'),createdocument, );
 router.get("/get-document", getDocument);
 router.get("/get-single-document/:id", getSingleDocument);
 router.put("/update-document/:id", updateDocument);
