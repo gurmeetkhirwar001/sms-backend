@@ -9,7 +9,7 @@ const registerDocument = async (req, res, next) => {
     console.log(upload);
     // const document = await Document.create(req.body);
     //   return res.status(200).send(document);
-    // responseHandler.data((res, document, 200));
+    responseHandler.data(res, upload, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -24,7 +24,7 @@ const getAllDocument = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Document not found..!" });
     }
-    res.send(document);
+    responseHandler.data(res, document, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -39,29 +39,42 @@ const getSingleDocument = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Document not found" });
     }
-    res.send(document);
+    responseHandler.data(res, document, 200);
   } catch (error) {
     next("error:", error.message);
   }
 };
 //api to update the document
-const updateDocument = async (req, res, next) => {
+
+
+const updateDocument  = async (req, res, next) => {
   try {
     const document = await Document.updateOne(
-      { id: req.params.id },
-      { $set: req.body }
+      { _id: req.params.id },
+      {
+        $set: req.body,
+      }
     );
-    // responseHandler.success(res, document, 200);
-      return res.status(200).send(document);
+    if (document) {
+      return res
+        .status(200)
+        .send({ message: "Document updated successfully..!" });
+    } else {
+      res.status(404).send({ message: "Update operation failed...!" });
+    }
+    // res.send(attendance);
+    responseHandler.data(res, document, 200);
   } catch (error) {
-    next("error:", error.message);
+    next("message", error.message);
   }
 };
+
 const deleteDocument = async (req, res, next) => {
   try {
     const document = await Document.deleteOne({ id: req.params.id });
     // responseHandler.success(res, document, 200);
-      return res.status(200).send(document);
+      // return res.status(200).send(document);
+      responseHandler.data(res, document, 200);
   } catch (error) {
     next("error:", error.message);
   }

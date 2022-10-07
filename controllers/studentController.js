@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Student = require("../models/studentModel");
 const router = require("../routes/studentRoute");
+const responseHandler = require("../helpers/responseHandler");
 
 // API to create the student
 
@@ -29,7 +30,7 @@ const registerStudent = asyncHandler(async (req, res, next) => {
     // }
 
     const student = await Student.create(req.body );
-    res.send(student)
+    responseHandler.data(res, student, 200);
     //   {
     //   student_name,
     //   student_id,
@@ -82,6 +83,7 @@ const getAllStudent = asyncHandler(async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Student not found..." });
     }
+    responseHandler.data(res, allStudents, 200);
   } catch (error) {
     next(error);
   }
@@ -97,6 +99,7 @@ const getSingleStudent = asyncHandler(async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Student not found..." });
     }
+    responseHandler.data(res, singleStudent, 200);
   } catch (error) {
     next("message", error.message);
   }
@@ -120,7 +123,7 @@ const updateStudent = asyncHandler(async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Update operation failed...!" });
     }
-    res.send(updateSingleStudent);
+    responseHandler.data(res, updateSingleStudent, 200);
   } catch (error) {
     next("message", error.message);
   }
@@ -139,7 +142,8 @@ const deleteStudent = asyncHandler(async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Delete operation failed...!" });
     }
-    res.send(deleteSingleStudent);
+    // res.send(deleteSingleStudent);
+    responseHandler.data(res, deleteSingleStudent, 200);
   } catch (error) {
     next("message", error.message);
   }

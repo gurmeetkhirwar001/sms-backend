@@ -1,11 +1,12 @@
 const Attendance = require("../models/attendanceModel");
+const responseHandler = require("../helpers/responseHandler");
 
 // API to create Attendance
 const registerAttendance = async (req, res, next) => {
   // res.send("attendance route is working...")
   try {
     const attendance = await Attendance.create(req.body);
-    res.send(attendance);
+    responseHandler.data(res, attendance, 200);
   } catch (error) {
     console.log("error:", error.message);
   }
@@ -15,13 +16,15 @@ const registerAttendance = async (req, res, next) => {
 const getAllAttendance = async (req, res, next) => {
   try {
     const attendance = await Attendance.find().populate({path:"student_id", select:["student_name"]}
-    );
+    )
+    // .aggregate([{$group:{_id:"$id", avg:{$student_course:"$student_course"}}}]);
     if (attendance) {
       return res.status(200).send(attendance);
     } else {
       res.status(404).send({ message: "Attendance not found..!" });
     }
-    res.send(attendance);
+    // res.send(attendance);
+    responseHandler.data(res, attendance, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -38,7 +41,8 @@ const getSingleAttendance = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Attendance not found..!" });
     }
-    res.send(attendance);
+    // res.send(attendance);
+    responseHandler.data(res, attendance, 200);
   } catch (error) {
     next("error:", error.message);
   }
@@ -60,7 +64,8 @@ const updateAttendance = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Update operation failed...!" });
     }
-    res.send(attendance);
+    // res.send(attendance);
+    responseHandler.data(res, attendance, 200);
   } catch (error) {
     next("message", error.message);
   }
@@ -78,7 +83,8 @@ const deleteAttendance = async (req, res, next) => {
     } else {
       res.status(404).send({ message: "Delete operation failed...!" });
     }
-    res.send(attendance);
+    // res.send(attendance);
+    responseHandler.data(res, attendance, 200);
   } catch (error) {
     next("message", error.message);
   }

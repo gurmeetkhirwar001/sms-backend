@@ -30,6 +30,9 @@ const documentSchema = new mongoose.Schema(
       enter_description:{
         type:String,
         required:true,
+      },
+      file:{
+        type:String,
       }
   },
   {
