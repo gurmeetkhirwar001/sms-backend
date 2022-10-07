@@ -19,6 +19,8 @@ const ContactenquiryRoutes = require('./routes/ContactenquiryRoute')
 const ScheduleRoutes = require("./routes/ScheduleRoute")
 const EventRoutes = require('./routes/eventRoute')
 const DocumentRoutes = require('./routes/DocumentRoute')
+const StudentclassRoute= require('./routes/studentclassRoute')
+const StudenteventRoute= require('./routes/students/studenteventRoute')
 //const Upload = require('./controllers/uploadFileController')
 const corsOptions = {
   origin: process.env.AccessURL,
@@ -46,6 +48,8 @@ app.use("/api/enquiry",ContactenquiryRoutes); //enquiry
 app.use("/api/schedule",ScheduleRoutes); //schedule
 app.use("/api/admin/event",EventRoutes); //event
 app.use("/api/admin/document",DocumentRoutes); //event
+app.use("/api/student_class",StudentclassRoute)
+app.use("/api/student_event",StudenteventRoute)
  //app.use("/api/upload",Upload)
 
 app.use(errorHandler);
