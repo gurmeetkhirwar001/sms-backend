@@ -14,6 +14,15 @@ const documentSchema = new mongoose.Schema(
       ref: "course",
       required: true,
       },
+      subject:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "subject",
+        required: true,
+      },
+      subject:{
+        type: String,
+        required: true,
+      },
       class: {
         type: String,
         required: true,

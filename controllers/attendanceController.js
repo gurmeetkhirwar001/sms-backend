@@ -31,6 +31,8 @@ const getAllAttendance = async (req, res, next) => {
   }
 };
 
+
+
 // API to get single Attendance
 
 const getSingleAttendance = async (req, res, next) => {

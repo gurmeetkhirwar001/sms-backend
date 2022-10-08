@@ -2,19 +2,17 @@
 const express = require("express");
 const multer = require("multer");
 const {
-    createdocument,
-    getDocument,
-  getSingleDocument,
-  DeleteDocument ,
-  updateDocument
+    
+    getstudentDocument,
+  getstudentSingleDocument,
+ 
   
-} = require("../controllers/Document.controller");
+} = require("../controllers/StudentDocument.controller");
 
 const router = express.Router();
 
-router.post("/create-document",multer().single('file'),createdocument, );
-router.get("/get-document", getDocument);
-router.get("/get-single-document/:id", getSingleDocument);
-router.put("/update-document/:id", updateDocument);
-router.delete("/delete-document/:id", DeleteDocument);
+
+router.get("/get-document", getstudentDocument);
+router.get("/get-single-document/:id", getstudentSingleDocument);
+
 module.exports = router;

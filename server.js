@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const ConnectDB = require("./config/dbConfig");
 const errorHandler = require("./helpers/errorHandler");
-const swaggerJsdoc = require("swagger-jsdoc");
+
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const Routes = require("./routes");
@@ -19,6 +19,10 @@ const ContactenquiryRoutes = require('./routes/ContactenquiryRoute')
 const ScheduleRoutes = require("./routes/ScheduleRoute")
 const EventRoutes = require('./routes/eventRoute')
 const DocumentRoutes = require('./routes/DocumentRoute')
+const StudentclassRoute= require('./routes/studentclassRoute')
+const assignadminclassRoutes = require('./routes/AdminassignclassRoute')
+const adminDocumentRoutes = require('./routes/AdminDocumentRoute')
+const teacheradmin_attendanceRoutes = require('./routes/Teacher_attendanceadminRoute');
 //const Upload = require('./controllers/uploadFileController')
 const corsOptions = {
   origin: process.env.AccessURL,
@@ -40,12 +44,18 @@ app.use("/api/user", Routes.UserRoutes);
 app.use("/api/student", studentRoute); // Student routes
 app.use("/api/teacher", teacherRoutes); // teacher routes
 app.use("/api/attendance", attendanceRoutes); // attendance routes
-app.use("/api/teacher_attendance", teacher_attendanceRoutes); // teacherattendance routes
-app.use("/api/assignclass",assignclassRoutes); //assign
+app.use("/api/student/teacher_attendance", teacher_attendanceRoutes); // teacherattendance routes
+app.use("/api/student/assignclass",assignclassRoutes); //assign
 app.use("/api/enquiry",ContactenquiryRoutes); //enquiry
 app.use("/api/schedule",ScheduleRoutes); //schedule
-app.use("/api/admin/event",EventRoutes); //event
-app.use("/api/admin/document",DocumentRoutes); //event
+app.use("/api/student/event",EventRoutes); //event
+app.use("/api/student/document",DocumentRoutes); //event
+app.use("/api/student_class",StudentclassRoute)
+app.use("/api/admin/document",adminDocumentRoutes);
+app.use("/api/admin/assignclass",assignadminclassRoutes); //assign
+app.use("/api/teacher_attendance", teacheradmin_attendanceRoutes); // teacherattendance routes
+
+
  //app.use("/api/upload",Upload)
 
 app.use(errorHandler);

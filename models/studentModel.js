@@ -28,6 +28,11 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    subject:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "subject",
+      required: true,
+    },
     student_contact_number: {
       type: Number,
       required: true,

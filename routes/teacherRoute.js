@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
-const { registerTeacher, findTeacher, getSingleTeacher, updateTeacher, deleteTeacher } = require("../controllers/teacherController");
+const { registerTeacher, findTeacher, getSingleTeacher, updateTeacher, deleteTeacher }
+ = require("../controllers/teacherController");
 
 const router = express.Router();
 
