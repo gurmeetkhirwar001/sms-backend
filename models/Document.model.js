@@ -34,6 +34,10 @@ const documentSchema = new mongoose.Schema(
       Enter_Description:{
         type:String,
         required:true,
+      },
+      file:{
+        type:String,
+        required:true,
       }
     
   },

@@ -1,9 +1,13 @@
 const Document = require("../models/Document.model");
 const responseHandler = require("../helpers/responseHandler");
+const { s3Upload } = require("../Utils/S3");
 // API to create Enquiry
 const createdocument = async (req, res, next) => {
   // res.send("attendance route is working...")
   try {
+    const upload =await  s3Upload(req.file);
+      
+        req.body.file = upload.link;
     const document = await Document.create(req.body);
     responseHandler.data(res, document, 200);
   } catch (error) {

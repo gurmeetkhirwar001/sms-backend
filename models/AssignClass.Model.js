@@ -23,6 +23,10 @@ const assignClassSchema = new mongoose.Schema(
         required: true,
         
        },
+       file:{
+        type: String,
+       
+      },
         lecture: {
         type: Array,
         required: true,

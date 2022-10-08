@@ -1,11 +1,14 @@
 const AssignClass = require("../models/AssignClass.Model");
 const responseHandler = require("../helpers/responseHandler");
-
+const { s3Upload } = require("../Utils/S3");
 
 // API to create Assign
 const registerassign = async(req,res, next) => {
     // res.send("teacher route is working...")
     try {
+      const upload =await  s3Upload(req.file);
+      
+      req.body.file = upload.link;
         const assign = await AssignClass.create(req.body);
         responseHandler.data(res, assign, 200);
     } catch (error) {

@@ -10,10 +10,10 @@ const registerSchedule = async(req,res, next) => {
     try {
       //"message": "The bucket does not allow ACLs",
       const upload =await  s3Upload(req.file);
-      // console.log(upload)
       
-        const schedule = await   Schedule.create(req.body);
-        responseHandler.data(res, schedule,upload, 200);
+        req.body.file = upload.link;
+        const schedule = await   Schedule.create(req.body);                                 
+        responseHandler.data(res, schedule, 200);
         // res.send(upload);
     }  catch (error) {
         console.log("error:", error.message);
