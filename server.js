@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const ConnectDB = require("./config/dbConfig");
 const errorHandler = require("./helpers/errorHandler");
-const swaggerJsdoc = require("swagger-jsdoc");
+
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const Routes = require("./routes");
@@ -44,10 +44,10 @@ app.use("/api/student", studentRoute); // Student routes
 app.use("/api/teacher", teacherRoutes); // teacher routes
 app.use("/api/attendance", attendanceRoutes); // attendance routes
 app.use("/api/student/teacher_attendance", teacher_attendanceRoutes); // teacherattendance routes
-app.use("/api/assignclass",assignclassRoutes); //assign
+app.use("/api/student/assignclass",assignclassRoutes); //assign
 app.use("/api/enquiry",ContactenquiryRoutes); //enquiry
 app.use("/api/schedule",ScheduleRoutes); //schedule
-app.use("/api/admin/event",EventRoutes); //event
+app.use("/api/student/event",EventRoutes); //event
 app.use("/api/student/document",DocumentRoutes); //event
 app.use("/api/student_class",StudentclassRoute)
 

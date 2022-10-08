@@ -7,7 +7,7 @@ const {createEvent,
     getSingleEvent,
     deleteEvent
   
-} = require("../controllers/event.controller");
+} = require("../controllers/eventStudent.controller");
 
 const router = express.Router();
 
