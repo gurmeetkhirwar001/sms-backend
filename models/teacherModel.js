@@ -56,7 +56,7 @@ const teacherSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
-    upload_file:{
+    file:{
        type:String,
        require:true
     }

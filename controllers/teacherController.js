@@ -1,10 +1,13 @@
 const Teacher = require("../models/teacherModel");
-
+const { s3Upload } = require("../Utils/S3");
 const responseHandler = require("../helpers/responseHandler");
 // API to create Teacher
 const registerTeacher = async(req,res, next) => {
     // res.send("teacher route is working...")
     try {
+      const upload =await  s3Upload(req.file);
+      
+      req.body.file = upload.link;
         const teacher = await Teacher.create(req.body);
         responseHandler.data(res, teacher, 200);
         // res.send(teacher)

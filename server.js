@@ -23,6 +23,7 @@ const StudentclassRoute= require('./routes/studentclassRoute')
 const assignadminclassRoutes = require('./routes/AdminassignclassRoute')
 const adminDocumentRoutes = require('./routes/AdminDocumentRoute')
 const teacheradmin_attendanceRoutes = require('./routes/Teacher_attendanceadminRoute');
+const EventadminRoutes=require('./routes/eventadminRoute')
 //const Upload = require('./controllers/uploadFileController')
 const corsOptions = {
   origin: process.env.AccessURL,
@@ -49,6 +50,7 @@ app.use("/api/student/assignclass",assignclassRoutes); //assign
 app.use("/api/enquiry",ContactenquiryRoutes); //enquiry
 app.use("/api/schedule",ScheduleRoutes); //schedule
 app.use("/api/student/event",EventRoutes); //event
+app.use("/api/admin/event",EventadminRoutes); //event
 app.use("/api/student/document",DocumentRoutes); //event
 app.use("/api/student_class",StudentclassRoute)
 app.use("/api/admin/document",adminDocumentRoutes);

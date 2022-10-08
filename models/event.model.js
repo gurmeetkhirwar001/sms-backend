@@ -26,6 +26,10 @@ const EventSchema = new mongoose.Schema(
       Detail:{
         type: String,
         required: true,
+      },
+      file:{
+        type: String,
+        required: true,
       }
       
       
