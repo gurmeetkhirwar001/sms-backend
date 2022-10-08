@@ -16,7 +16,7 @@ const attendanceRoutes = require("./routes/attendanceRoute");
 const documentRoutes = require('./routes/documentRoute')
 const eventRoutes = require('./routes/eventRoute')
 const studentAttendanceRoutes = require('./routes/studentAttendanceRoute')
-const subjectRoutes = require('./routes/subjectRoute')
+
 const corsOptions = {
   origin: process.env.AccessURL,
   optionsSuccessStatus: 200,
@@ -41,7 +41,6 @@ app.use("/api/attendance", attendanceRoutes); // attendance routes
 app.use("/api/document", documentRoutes); // document routes
 app.use("/api/event", eventRoutes); //event routes
 app.use('/api/studentAttendance', studentAttendanceRoutes);
-app.use('/api/subject', subjectRoutes);
 
 app.use(errorHandler);
 app.listen(process.env.PORT, () => {
