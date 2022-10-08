@@ -16,6 +16,8 @@ const teacherattendenceSchema = new mongoose.Schema(
       default: Date.now(),
     },
     
+  
+  
   },
   {
     versionKey: false, // removed __v

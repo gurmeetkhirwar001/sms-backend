@@ -20,7 +20,8 @@ const ScheduleRoutes = require("./routes/ScheduleRoute")
 const EventRoutes = require('./routes/eventRoute')
 const DocumentRoutes = require('./routes/DocumentRoute')
 const StudentclassRoute= require('./routes/studentclassRoute')
-const StudenteventRoute= require('./routes/students/studenteventRoute')
+
+
 //const Upload = require('./controllers/uploadFileController')
 const corsOptions = {
   origin: process.env.AccessURL,
@@ -42,14 +43,17 @@ app.use("/api/user", Routes.UserRoutes);
 app.use("/api/student", studentRoute); // Student routes
 app.use("/api/teacher", teacherRoutes); // teacher routes
 app.use("/api/attendance", attendanceRoutes); // attendance routes
-app.use("/api/teacher_attendance", teacher_attendanceRoutes); // teacherattendance routes
+app.use("/api/student/teacher_attendance", teacher_attendanceRoutes); // teacherattendance routes
 app.use("/api/assignclass",assignclassRoutes); //assign
 app.use("/api/enquiry",ContactenquiryRoutes); //enquiry
 app.use("/api/schedule",ScheduleRoutes); //schedule
 app.use("/api/admin/event",EventRoutes); //event
-app.use("/api/admin/document",DocumentRoutes); //event
+app.use("/api/student/document",DocumentRoutes); //event
 app.use("/api/student_class",StudentclassRoute)
-app.use("/api/student_event",StudenteventRoute)
+
+
+
+
  //app.use("/api/upload",Upload)
 
 app.use(errorHandler);

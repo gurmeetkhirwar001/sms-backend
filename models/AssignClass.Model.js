@@ -14,9 +14,16 @@ const assignClassSchema = new mongoose.Schema(
       ref: "course",
       required: true,
       },
+      faculty_name:{
+        type:String,
+        require:true,
+      },
       class: {
         type: String,
         required: true,
+      },
+      assign:{
+        type:String
       },
       assign_substition:{
         type:String,
