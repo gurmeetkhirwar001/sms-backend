@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 
 const courseSchema = new mongoose.Schema(
   {
-    studentId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
+    // studentId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //     required: true,
+    //   },
 
- student_course: {
+      student_course: {
         type: String,
-        enum: ["B-tech,MBA,BA"],
+        enum: ["B.Tech", "MBA" , "BA", "M.Tech"],
       },
 },
   

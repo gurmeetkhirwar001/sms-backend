@@ -8,28 +8,40 @@ const subjectSchema = new mongoose.Schema(
     //     required: true,
     //   },
 
+    // class:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "class",
+    //     required: true,
+    //    },
+    //    class: {
+    //     type: String,
+    //     required: true,
+    //   },
 
-    class:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "class",
-        required: true,
-       },
-       class: {
-        type: String,
-        required: true,
-      },
-
- subject: {
-        type: String,
-        enum: ["machincal,computer_science,civil_engineering,electronic"],
-      },
-      subject: {
-        type: String,
-        required: true,
+    subject: {
+      type: String,
+      enum: [
+        "machincal",
+        "civil_engineering",
+        "electronic",
+        "Computer Science",
+        "Computer Application",
+        "Mathematics",
+        "Physics",
+        "Physics-2",
+        "DBMS-II",
+        "Chemistry",
+        "DBMS",
+      ],
+      required: true,
     },
-},
 
-  
+     subject : {
+      type: String,
+      required: true,
+     }
+  },
+
   {
     versionKey: false, // removed __v
     timestamps: true, // createdAt, updatedAt

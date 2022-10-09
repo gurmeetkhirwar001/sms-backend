@@ -4,8 +4,18 @@ const attendenceSchema = new mongoose.Schema(
   {
     student_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "student",
+      ref: "User",
       required: true,
+    },
+    subject_id:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "subject",
+    },
+   
+
+    semester_id:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "semester",
     },
     is_present: {
       type: Boolean,
