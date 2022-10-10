@@ -28,6 +28,11 @@ const studentDailyAttendanceRoutes= require("./routes/studentDailyAttendaceRoute
 const SubjectRoutes = require("./routes/subjectRoute");
 const courseRoutes = require('./routes/courseRoute');
 const semesterRoutes = require('./routes/semesterRoute');
+const documentTeacherRoutes = require('./routes/documentTeacherRoute')
+const eventTeacherRoutes = require('./routes/eventTeacherRoute')
+const studentAttendanceRoutes = require('./routes/studentAttendanceRoute')
+const TeacherattendanceRoutes= require('./routes/TeacherattendanceRoute')
+const TeacherStudentRoutes = require('./routes/Teacher-studentRoute')
 
 //const Upload = require('./controllers/uploadFileController')
 const corsOptions = {
@@ -65,6 +70,11 @@ app.use("/api/dailyAttendance", studentDailyAttendanceRoutes); // attendance rou
 app.use("/api/subject",SubjectRoutes); //subject
 app.use('/api/course', courseRoutes);
 app.use('/api/semester/', semesterRoutes);
+app.use('/api/documentTeacher', documentTeacherRoutes);
+app.use('/api/eventTeacher', eventTeacherRoutes)
+app.use('/api/studentAttendance', studentAttendanceRoutes);
+app.use('/api/teacher-attendance',TeacherattendanceRoutes);
+app.use('/api/teacher-studentdetails',TeacherStudentRoutes)
 
 
 

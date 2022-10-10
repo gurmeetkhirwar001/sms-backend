@@ -65,7 +65,8 @@ const UserLogin = async (req, res, next) => {
         UserData.password
       );
       if (PasswordMatch) {
-        const token = createNewToken(UserData);
+        req.email = UserData
+        const token = createNewToken(req.email);
         // console.log(token, "token");
         responseHandler.data(res, token, 200);
       } else {
