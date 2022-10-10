@@ -69,8 +69,8 @@ const UserLogin = async (req, res, next) => {
       
        
         const token = createNewToken(UserData);
-       
-        responseHandler.data(res, token, 200);
+      // res.token = token.UserData
+        responseHandler.data(res,{token, user: UserData}, 200);
       } else {
         throw new Error("Password Doesn't match");
       }
