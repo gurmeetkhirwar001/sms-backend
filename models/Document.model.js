@@ -3,26 +3,13 @@ const mongoose = require("mongoose");
 
 const documentSchema = new mongoose.Schema(
   {
-    class: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "class",
-      required: true,
-    },
+   
     
-      course:{
-        type: mongoose.Schema.Types.ObjectId,
-      ref: "course",
-      required: true,
-      },
-      subject:{
+      subject_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "subject",
-        required: true,
       },
-      subject:{
-        type: String,
-        required: true,
-      },
+      
       class: {
         type: String,
         required: true,
@@ -36,10 +23,10 @@ const documentSchema = new mongoose.Schema(
         type: Array,
         required: true,
       },
-      semester: {
-        type: Array,
-        required: true,
-      },
+     semester_id:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "semester",
+    },
       Enter_Description:{
         type:String,
         required:true,

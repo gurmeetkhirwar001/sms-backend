@@ -2,21 +2,7 @@ const mongoose = require("mongoose");
 
 const subjectSchema = new mongoose.Schema(
   {
-    // studentId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "User",
-    //     required: true,
-    //   },
-
-    // class:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "class",
-    //     required: true,
-    //    },
-    //    class: {
-    //     type: String,
-    //     required: true,
-    //   },
+    
 
     subject: {
       type: String,
@@ -36,10 +22,7 @@ const subjectSchema = new mongoose.Schema(
       required: true,
     },
 
-     subject : {
-      type: String,
-      required: true,
-     }
+   
   },
 
   {

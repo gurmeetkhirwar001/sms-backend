@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const classSchema = new mongoose.Schema(
   {
-    studentId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
+    // studentId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //     required: true,
+    //   },
 
- student_class: {
+ class: {
         type: String,
         enum: ["CSE-1,CSE-2"],
       },

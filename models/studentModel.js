@@ -16,23 +16,24 @@ const studentSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    student_course: {
-      type: String,
-      required: true,
+    
+    course_id:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "course",
     },
-    student_semester: {
-      type: String,
-      required: true,
+    semester_id:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "semester",
     },
     student_class: {
       type: String,
       required: true,
     },
-    subject:{
+    subject_id:{
       type: mongoose.Schema.Types.ObjectId,
       ref: "subject",
-      required: true,
     },
+   
     student_contact_number: {
       type: Number,
       required: true,
