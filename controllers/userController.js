@@ -65,9 +65,11 @@ const UserLogin = async (req, res, next) => {
         UserData.password
       );
       if (PasswordMatch) {
-        req.email = UserData
-        const token = createNewToken(req.email);
-        // console.log(token, "token");
+       
+      
+       
+        const token = createNewToken(UserData);
+       
         responseHandler.data(res, token, 200);
       } else {
         throw new Error("Password Doesn't match");

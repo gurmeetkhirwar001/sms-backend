@@ -1,4 +1,4 @@
-const Course = require("../models/course.model");
+const Course = require("../models/course.Model");
 const responseHandler = require("../helpers/responseHandler");
 
 
