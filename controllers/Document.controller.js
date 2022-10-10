@@ -1,9 +1,9 @@
 const Document = require("../models/Document.model");
 const responseHandler = require("../helpers/responseHandler");
 const { s3Upload } = require("../Utils/S3");
-// API to create Enquiry
+// API to create document
 const createdocument = async (req, res, next) => {
-  // res.send("attendance route is working...")
+  
   try {
     const upload =await  s3Upload(req.file);
       
@@ -15,7 +15,7 @@ const createdocument = async (req, res, next) => {
   }
 };
 
-// API to get all the Enquiry
+// API to get all the document
 const getDocument = async (req, res, next) => {
   try {
     const document = await Document.find()
@@ -31,7 +31,7 @@ const getDocument = async (req, res, next) => {
   }
 };
 
-//API to get single Enquiry
+//API to get single Document
 
 const getSingleDocument = async (req, res, next) => {
   try {
@@ -40,7 +40,7 @@ const getSingleDocument = async (req, res, next) => {
     if (document) {
       return res.status(200).send(document);
     } else {
-      res.status(404).send({ message: " ContactEnquiry not found..!" });
+      res.status(404).send({ message: " document not found..!" });
     }
     responseHandler.data(res, document, 200);
   } catch (error) {
