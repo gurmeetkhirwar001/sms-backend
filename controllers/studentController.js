@@ -1,11 +1,14 @@
 const asyncHandler = require("express-async-handler");
 const Student = require("../models/studentModel");
-const router = require("../routes/studentRoute");
+const { s3Upload } = require("../Utils/S3");
 const responseHandler = require("../helpers/responseHandler");
 // API to create the student
 
 const registerStudent = asyncHandler(async (req, res, next) => {
   try {
+    const upload =await  s3Upload(req.file);
+      
+        req.body.file = upload.link;
     // const {
     //   student_name,
     //   student_id,

@@ -66,6 +66,10 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    file:{
+      type: String,
+      required: true,
+    }
   },
   {
     versionKey: false, // removed __v

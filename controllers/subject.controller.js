@@ -1,8 +1,9 @@
 const Subject = require('../models/Subject.model');
 const responseHandler = require("../helpers/responseHandler");
-
+const { s3Upload } = require("../Utils/S3");
 const registerSubject = async (req, res, next) => {
     try {
+     
       const subject = await Subject.create(req.body);
       
         // return res.status(200).send(studentAttendance);
