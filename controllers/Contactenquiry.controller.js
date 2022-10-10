@@ -23,7 +23,7 @@ const getContactenquiry = async (req, res, next) => {
     }
     responseHandler.data(res, Contactenquiry, 200);
   } catch (error) {
-    next("error:", error.message);
+    next("message", error.message);
   }
 };
 
@@ -40,7 +40,7 @@ const getSingleEnquiry = async (req, res, next) => {
     }
     responseHandler.data(res, Contactenquiry, 200);
   } catch (error) {
-    next("error:", error.message);
+    next("message", error.message);
   }
 };
 

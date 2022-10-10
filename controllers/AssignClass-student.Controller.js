@@ -17,7 +17,7 @@ const studentAssign = async(req, res, next) => {
         responseHandler.data(res, assign, 200);
       
     } catch (error) {
-        next('error:', error.message);
+        next("message", error.message);
     }
 }
 
@@ -33,7 +33,7 @@ const getSingleAssign = async(req, res, next) => {
         }
         responseHandler.data(res, assign, 200);
     } catch (error) {
-        next('error:', error.message);
+        next("message", error.message);
     }
 }
 

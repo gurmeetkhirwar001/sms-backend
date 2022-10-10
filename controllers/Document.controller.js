@@ -44,7 +44,7 @@ const getSingleDocument = async (req, res, next) => {
     }
     responseHandler.data(res, document, 200);
   } catch (error) {
-    next("error:", error.message);
+    next( "message", error.message);
   }
 };
 

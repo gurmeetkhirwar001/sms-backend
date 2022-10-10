@@ -23,6 +23,10 @@ const documentSchema = new mongoose.Schema(
         type: Array,
         required: true,
       },
+      semester: {
+        type: Array,
+        required: true,
+      },
      semester_id:{
       type: mongoose.Schema.Types.ObjectId,
       ref: "semester",

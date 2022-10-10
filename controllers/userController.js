@@ -81,6 +81,23 @@ const UserLogin = async (req, res, next) => {
     next(e);
   }
 };
+
+const getLogin = async (req, res, next) => {
+  try {
+    const UserData = await User.find();
+
+    if (UserData) {
+    
+       
+        responseHandler.data(res,UserData, 200);
+     
+    } else {
+      throw new Error("No User Found!");
+    }
+  } catch (e) {
+    next(e);
+  }
+};
  
 const UserUpdate = async (req, res, next) => {
   try {
@@ -108,6 +125,7 @@ module.exports = {
   getAllUsers,
   getSingleUser,
   UserLogin,
+  getLogin,
   UserUpdate,
   UserDelete,
 };

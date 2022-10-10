@@ -7,11 +7,7 @@ const studentAttendanceSchema = new mongoose.Schema(
       required: true,
     },
 
-    student_name : {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "student",
-      required: true,
-    },
+    
     student_name : {
       type: String,   
       required: true,
