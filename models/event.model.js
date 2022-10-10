@@ -3,18 +3,18 @@ const mongoose = require("mongoose");
 
 const EventSchema = new mongoose.Schema(
   {
-    Annual_function: {
+    Event_name: {
       type: String,
       
       required: true,
     },
     
-      Public_event:{
+      Event_type:{
         type:String,
      
       required: true,
       },
-      Select_Data: {
+      Select_Date: {
         type: String,
         required: true,
       },
