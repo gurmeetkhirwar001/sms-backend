@@ -8,6 +8,6 @@ router.get("/getlogin", UserController.getLogin,);
 router.get("/get-users", UserController.getAllUsers);
 router.get("/get-single-users/:id", UserController.getSingleUser);
 router.delete("/delete-user/:id", UserController.UserDelete);
-router.patch("/update-user", UserController.UserUpdate);
+router.patch("/update-user/:id", UserController.UserUpdate);
 
 module.exports = router;
