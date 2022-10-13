@@ -2,98 +2,145 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "My User Project CRUD",
-    "description": "My User Project Application API",
+    "title": "Swagger Petstore",
     "license": {
-      "name": "MIT",
-      "url": "https://opensource.org/licenses/MIT"
+      "name": "MIT"
     }
   },
-  "host": "localhost:8000",
-  "basePath": "/",
-  "tags": [
-    {
-      "name": "Users",
-      "description": "API for users in the system"
-    }
-  ],
+  "host": "petstore.swagger.io",
+  "basePath": "/v1",
   "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/api/user/login": {
-      "post": {
-        "tags": ["Users"],
-        "summary": "Create User",
+    "/pets": {
+      "get": {
+        "summary": "List all pets",
+        "operationId": "listPets",
+        "tags": ["pets"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "An paged array of pets",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Pets"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
-      }
-    },
-    "/api/user/create-user": {
+      },
       "post": {
-        "tags": ["Users"],
-        "description": "Create new user in system",
+        "summary": "Create a pet",
+        "operationId": "createPets",
+        "tags": ["pets"],
         "parameters": [
           {
-            "user_email": "user",
             "in": "body",
-            "description": "User email",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          },
-          {
-            "user_password": "user",
-            "in": "body",
-            "description": "User Password",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          },
-          {
-            "user_type": "user",
-            "in": "body",
-            "description": "User type",
+            "name": "body",
+            "description": "Pet object that needs to be added to the store",
+            "required": false,
             "schema": {
               "$ref": "#/definitions/User"
             }
           }
         ],
-        "produces": ["application/json"],
         "responses": {
-          "200": {
-            "description": "New user is created",
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/newUser"
+              "$ref": "#/definitions/Error"
             }
           }
         }
       }
     },
-    "definitions": {
-      "User": {
-        "required": ["user_email", "user_password", "user_type"],
-        "properties": {
-          "user_email": {
-            "type": "string"
-          },
-          "user_password": {
-            "type": "string"
-          },
-          "user_type": {
+    "/pets/{petId}": {
+      "get": {
+        "summary": "Info for a specific pet",
+        "operationId": "showPetById",
+        "tags": ["pets"],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The id of the pet to retrieve",
             "type": "string"
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Pets"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
         }
-      },
-      "Users": {
-        "type": "array",
-        "$ref": "#/definitions/User"
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "integer",
+
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      }
+    },
+    "Pets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Pet"
+      }
+    },
+    "Error": {
+      "required": ["code", "message"],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
       }
     }
   }
