@@ -2,22 +2,21 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Swagger Petstore",
+    "title": "Swagger",
     "license": {
       "name": "MIT"
     }
   },
-  "host": "petstore.swagger.io",
-  "basePath": "/v1",
+  "host": "localhost:4000",
   "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/pets": {
+    "/api/user/get-user": {
       "get": {
-        "summary": "List all pets",
-        "operationId": "listPets",
-        "tags": ["pets"],
+        "summary": "List all users",
+        "operationId": "listUser",
+        "tags": ["User"],
         "parameters": [
           {
             "name": "limit",
@@ -30,7 +29,7 @@
         ],
         "responses": {
           "200": {
-            "description": "An paged array of pets",
+            "description": "An paged array of User",
             "headers": {
               "x-next": {
                 "type": "string",
@@ -38,7 +37,7 @@
               }
             },
             "schema": {
-              "$ref": "#/definitions/Pets"
+              "$ref": "#/definitions/User"
             }
           },
           "default": {
@@ -48,16 +47,18 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/user/create-user": {
       "post": {
-        "summary": "Create a pet",
-        "operationId": "createPets",
-        "tags": ["pets"],
+        "summary": "Create a user",
+        "operationId": "createUser",
+        "tags": ["User"],
         "parameters": [
           {
             "in": "body",
             "name": "body",
-            "description": "Pet object that needs to be added to the store",
+            "description": "Create new user in the system",
             "required": false,
             "schema": {
               "$ref": "#/definitions/User"
@@ -77,17 +78,18 @@
         }
       }
     },
-    "/pets/{petId}": {
+
+    "api/user/get-single-users/:id": {
       "get": {
-        "summary": "Info for a specific pet",
-        "operationId": "showPetById",
-        "tags": ["pets"],
+        "summary": "Info for a specific user",
+        "operationId": "showUserById",
+        "tags": ["User"],
         "parameters": [
           {
-            "name": "petId",
+            "name": "id",
             "in": "path",
             "required": true,
-            "description": "The id of the pet to retrieve",
+            "description": "The id of the user to retrieve",
             "type": "string"
           }
         ],
@@ -95,7 +97,1166 @@
           "200": {
             "description": "Expected response to a valid request",
             "schema": {
-              "$ref": "#/definitions/Pets"
+              "$ref": "#/definitions/User"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/user/update-user/:id": {
+      "patch": {
+        "summary": "Info for a specific user",
+        "operationId": "updateUserById",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the user to update",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/user/delete-user/:id": {
+      "delete": {
+        "summary": "Info for a specific user",
+        "operationId": "deleteUserById",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the user to delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+
+    "/api/user/login": {
+      "post": {
+        "summary": "User Login",
+        "operationId": "loginUser",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create new user in the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/getlogin": {
+      "get": {
+        "summary": "List of User Login",
+        "operationId": "listLoginUser",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of User",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/teacher/create-teacher": {
+      "post": {
+        "summary": "Create a teacher",
+        "operationId": "createTeacher",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create new teacher in the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/teacher/get-teacher": {
+      "get": {
+        "summary": "List all teachers",
+        "operationId": "listTeacher",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An paged array of Teacher",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/teacher/get-teacher/:id": {
+      "get": {
+        "summary": "Info for a specific teacher",
+        "operationId": "showTeacherById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the teacher to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/teacher/update-teacher/:id": {
+      "put": {
+        "summary": "Info for a specific teacher",
+        "operationId": "updateTeacherById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the taecher to update",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/teacher/delete-teacher/:id": {
+      "delete": {
+        "summary": "Info for a specific user",
+        "operationId": "deleteUserById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the teacher to delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/studentAttendance/create-student-attendance": {
+      "post": {
+        "summary": "Create a student attendance",
+        "operationId": "createStudentAttendance",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create new studentAttendance in the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/StudentAttendance"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/studentAttendance/get-student-attendance": {
+      "get": {
+        "summary": "List all studentAttendance",
+        "operationId": "listStudentAttendance",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An paged array of studentAttendance",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/StudentAttendance"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definition/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/studentAttendance/get-single-student-attendance/:id": {
+      "get": {
+        "summary": "Info for a specific studentAttendance",
+        "operationId": "showStudentAttendanceById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the studentAttendance to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/StudentAttendance"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/studentAttendance/update-student-attendance/:id": {
+      "put": {
+        "summary": "Update info for a specific studentAttendance",
+        "operationId": "updateStudentAttendanceById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the studentAttendance to update",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/StudentAttendance"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/studentAttendance/delete-student-attendance/:id": {
+      "delete": {
+        "summary": "Delete info for a specific studentAttendance",
+        "operationId": "deletestudentAttendanceById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the studentAttendance to delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/StudentAttendance"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/teacher-studentdetails/get-student": {
+      "get": {
+        "summary": "List all studentProfile",
+        "operationId": "listStudentProfile",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An paged array of student profile",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/teacher-studentdetails/get-single-student/:id": {
+      "get": {
+        "summary": "Info for a specific student profile",
+        "operationId": "showStudentProfileById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the student detail to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/documentTeacher/create-teacher-document": {
+      "post": {
+        "summary": "Create a teacher document",
+        "operationId": "createTeacherDocument",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create new teacher document in the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/documentTeacher/get-teacher-document": {
+      "get": {
+        "summary": "List all teacher document",
+        "operationId": "listTeacherDocument",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An paged array of teacherDocument",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/documentTeacher/get-single-teacher-document/:id": {
+      "get": {
+        "summary": "Info for a specific teacher document",
+        "operationId": "showTeacherDocument",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the teacher document to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/documentTeacher/update-teacher-document/:id": {
+      "put": {
+        "summary": "Update info for a specific teacher document",
+        "operationId": "updateTeacherDocumentById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the teacherDocument to update",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/documentTeacher/delete-teacher-document/:id": {
+      "delete": {
+        "summary": "Delete info for a specific teacher document",
+        "operationId": "deleteTeacherDocumentById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the documentTeacher to delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/eventTeacher/create-teacher-event": {
+      "post": {
+        "summary": "Create a teacher event",
+        "operationId": "createTeacherEvent",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create new teacher event in the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/eventTeacher/get-teacher-event": {
+      "get": {
+        "summary": "List all teacher event",
+        "operationId": "listTeacherEvent",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An paged array of teacherEvent",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/eventTeacher/get-single-teacher-event/:id": {
+      "get": {
+        "summary": "Info for a specific teacher event",
+        "operationId": "showTeacherEvent",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the teacher event to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/eventTeacher/update-teacher-event/:id": {
+      "put": {
+        "summary": "Update info for a specific teacher event",
+        "operationId": "updateTeacherEventById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the teacherEvent to update",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/eventTeacher/delete-teacher-event/:id": {
+      "delete": {
+        "summary": "Delete info for a specific teacher event",
+        "operationId": "deleteTeacherEventById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the eventTeacher to delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitionsTeacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/attendance/create-attendance": {
+      "post": {
+        "summary": "Create attendance by the teacher",
+        "operationId": "createAttendance",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create attendance in the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/attendance/get-attendance": {
+      "get": {
+        "summary": "List all attendance",
+        "operationId": "listAttendance",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An paged array of attendance",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/attendance/get-single-attendance/:id": {
+      "get": {
+        "summary": "Info for a specific attendance",
+        "operationId": "showAttendance",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the attendance to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/attendance/update-attendance/:id": {
+      "put": {
+        "summary": "Update info for a specific attendance",
+        "operationId": "updateAttendanceById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the attendance to update",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/attendance/delete-attendance/:id": {
+      "delete": {
+        "summary": "Delete info for a specific attendance",
+        "operationId": "deleteAttendanceById",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the attendance to delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/semester/create-semester": {
+      "post": {
+        "summary": "Create semester by the teacher",
+        "operationId": "createSemester",
+        "tags": ["Teacher"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create semester in the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/student/create-student": {
+      "post": {
+        "summary": "Create Student",
+        "operationId": "createStudent",
+        "tags": ["Student"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create student in the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/student/get-student": {
+      "get": {
+        "summary": "List of all the student",
+        "operationId": "listStudent",
+        "tags": ["Student"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An paged array of student",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/student/get-single-student/:id": {
+      "get": {
+        "summary": "Info for a specific student",
+        "operationId": "showStudentById",
+        "tags": ["Student"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the student to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/student/update-student/:id": {
+      "put": {
+        "summary": "Update info for a specific student",
+        "operationId": "updateStudentById",
+        "tags": ["Student"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the student to update",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "api/student/delete-student/:id": {
+      "delete": {
+        "summary": "Delete info for a specific student",
+        "operationId": "deleteStudentById",
+        "tags": ["Student"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the student to delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Student"
             }
           },
           "default": {
@@ -110,7 +1271,7 @@
   },
   "definitions": {
     "User": {
-      "required": ["id", "name"],
+      "required": ["id", "name", "email", "password"],
       "properties": {
         "id": {
           "type": "integer",
@@ -120,15 +1281,128 @@
         "name": {
           "type": "string"
         },
-        "tag": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
           "type": "string"
         }
       }
     },
-    "Pets": {
+
+    "Teacher":{
+      "required":[
+        "id",
+        "faculty_name",
+        "contact_number",
+        "email_address",
+        "password",
+        "father_name",
+        "home_address",
+        "designation",
+        "qualifications",
+        "subjects",
+        "course",
+        "official_imformation",
+        "semester",
+        "file"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+
+          "format": "int64"
+        },
+        "faculty_name": {
+          "type": "string"
+        },
+        "contact_number": {
+          "type": "integer"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "password":{
+          "type":"string"
+        },
+        "father_name":{
+          "type":"string"
+        },
+        "home_address":{
+          "type":"string"
+        },
+        "designation": {
+          "type": "string"
+        },
+        "qualifications": {
+          "type": "array"
+        },
+        "subjects": {
+          "type":"array"
+        },
+        "course": {
+          "type": "array"
+        },
+        "official information": {
+          "type": "string"
+        },
+        "semester": {
+          "type":"array"
+        },
+        "file":{
+          "type":"string"
+        }
+    
+      }
+    },
+
+    "StudentAttendance": {
+      "required": [
+        "id",
+        "student_name",
+        "student_course",
+        "student_class",
+        "is_present",
+        "attendence_time"
+      ],
+      "properties": {
+        "student_id": {
+          "type": "integer"
+        },
+        "student_name": {
+          "type": "string"
+        },
+        "student_course": {
+          "type": "array"
+        },
+
+        "student_class": {
+          "type": "array"
+        },
+        "is_present":{
+          "type":"boolean"
+        },
+        "attendence_time":{
+          "type":"date"
+        }
+      }
+    },
+    "TaskUser": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Pet"
+        "$ref": "#/definitions/User"
+      }
+    },
+    "TaskTeacher": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Teacher"
+      }
+    },
+    "TaskStudentAttendance": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/StudentAttendance"
       }
     },
     "Error": {

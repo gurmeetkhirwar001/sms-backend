@@ -1,0 +1,114 @@
+"api/student/create-student": {
+            post:{
+              tags:["Student"],
+              description:"Create student in system"
+            }
+          },
+          "api/student/get-student": {
+            get:{
+              tags:["Student"],
+              description:"List of all the students"
+            }
+          },
+          "api/student/get-single-student/:id": {
+            get:{
+              tags:["Student"],
+              description:"getting individual details of the student"
+            }
+          },
+          "api/student/update-student/:id": {
+            put:{
+              tags:["Student"],
+              description:"Update individual details of the student"
+            }
+          },
+          "api/student/delete-student/:id": {
+            delete:{
+              tags:["Student"],
+              description:"Delete individual details of the student"
+            }
+          },
+          "api/dailyAttendance/get-daily-attendance": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of daily attendance"
+            }
+          },
+          "api/dailyAttendance/get-daily-monthly-attendance": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of monthly attendance"
+            }
+          },
+          "api/dailyAttendance/get-semester-attendance": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of semester wise attendance"
+            }
+          },
+          "api/student/assignclass/get-allassign": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of student assign in the class"
+            }
+          },
+          "api/student/assignclass/get-assign/:id": {
+            get:{
+              tags:["Student"],
+              description:"Getting individual details of student assign in the class"
+            }
+          },
+          "api/student/event/get-event": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of student event"
+            }
+          },
+          "api/student/event/get-single-event/:id": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of individual student event"
+            }
+          },
+          "api/student/document/get-document": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of student document"
+            }
+          },
+          "api/student/document/get-single-document/:id": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of individual student document"
+            }
+          },
+          "api/student_class/student_class": {
+            post:{
+              tags:["Student"],
+              description:"Create new student class in the system"
+            }
+          },
+          "api/student_class/get-student_class": {
+            get:{
+              tags:["Student"],
+              description:"Getting details of all student class"
+            }
+          },
+          "api/subject/create-subject": {
+            get:{
+              tags:["Student"],
+              description:"Create list of new subject"
+            }
+          },
+          "api/subject/get-subject": {
+            get:{
+              tags:["Student"],
+              description:"Getting list of all subjects"
+            }
+          },
+          "api/student/teacher_attendance/get-teacher_attendance": {
+            get:{
+              tags:["Student"],
+              description:"Getting list of all teacher attendance"
+            }
+          },

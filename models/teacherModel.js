@@ -48,7 +48,7 @@ const teacherSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
-    offical_imformation:{
+    official_imformation:{
       type: String,
       required: true,
     },
